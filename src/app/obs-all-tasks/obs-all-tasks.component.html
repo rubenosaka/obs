@@ -1,0 +1,35 @@
+<div class="card obs-card">
+  <div class="row mb-5">
+    <div class="col-sm-8">
+      <h3>All tasks</h3>
+    </div>
+    <div class="col-sm-4 text-right">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createTask">
+        Add new Task
+      </button>
+    </div>
+  </div>
+  <div class="row">
+      <div id="item-{{task._id}}" *ngFor="let task of tasks; let i = index" class="col-sm-12">
+        <div class="item-list" *ngIf="!showItem.includes(i)">
+          <div ng-show = "IsVisible" class="row">
+            <div class="col-sm-8"><h5>{{task.description}}</h5></div>
+            <div class="col-sm-4 edit-item text-right">
+              <span><i class="far fa-edit"></i></span>
+              <span (click)="deleteTask(task._id, i);"><i class="far fa-trash-alt"></i></span>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col-sm-3"><strong>ID: </strong>{{task._id}}</div>
+            <div class="col-sm-3"><strong>Status: </strong>{{task.completed}}</div>
+            <div class="col-sm-2"><strong>Owner: </strong>{{task.owner}}</div>
+            <div class="col-sm-2"><strong>Created: </strong>{{task.createdAt}}</div>
+
+          </div>
+
+        </div>
+      </div>
+
+  </div>
+</div>
