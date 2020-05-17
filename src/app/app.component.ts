@@ -9,7 +9,7 @@ import {NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 @Injectable()
 export class AppComponent {
-  title = 'OBS Task Angular App';
+  title = 'OBS Angular App';
 
   constructor(private modalService: NgbModal) {}
 

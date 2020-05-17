@@ -19,6 +19,7 @@ export class ObsCreateTasksComponent implements OnInit {
     private appComponent: AppComponent,
     public activeModal: NgbActiveModal,
   ){  }
+
   createTask = new FormGroup({
      description: new FormControl(''),
      completed: new FormControl(''),
@@ -27,7 +28,7 @@ export class ObsCreateTasksComponent implements OnInit {
   }
 
   addTask(){
-    this.activeModal.close();
+    this.modalService.dismissAll();
     if( this.createTask.value.completed === "" || this.createTask.value.completed === " " || this.createTask.value.completed === "false"){
        this.createTask.value.completed = false
     }else{
@@ -47,6 +48,9 @@ export class ObsCreateTasksComponent implements OnInit {
         </ul>
       `;
       this.appComponent.openModal(modalTitleContent, modalMsgContent);
+      setTimeout(function(){
+        window.location.reload();
+      }, 2000)
 
     },
     err => {

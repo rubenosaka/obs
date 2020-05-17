@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,17 @@ import { Observable } from 'rxjs';
 
 export class TaskService {
   owner = 11
+  apiUrl = "http://amimusa.xen.prgmr.com:3000/tasks/"
   constructor(protected http: HttpClient) { }
   getTasks() {
-    return this.http.get('http://amimusa.xen.prgmr.com:3000/tasks/'+this.owner);
+    return this.http.get(this.apiUrl+this.owner)
+    .pipe(
+       map((response:Response)=>response)
+     );
   }
+
+
+
 
   data = {}
 
@@ -20,7 +28,7 @@ export class TaskService {
 
     console.log(description);
     console.log(completed);
-    const url = 'http://amimusa.xen.prgmr.com:3000/tasks/'+this.owner;
+    const url = this.apiUrl+this.owner;
     console.log(url);
     this.data ={
       "description": description,
@@ -33,7 +41,7 @@ export class TaskService {
   removeTask(id:string, i): Observable<any> {
 
     console.log(id);
-    const url = 'http://amimusa.xen.prgmr.com:3000/tasks/'+id;
+    const url = this.apiUrl+id;
     console.log(url);
     return this.http.delete(url)
 
@@ -42,8 +50,7 @@ export class TaskService {
 
   updateTask(id: string, description:string, completed: boolean): Observable<any> {
 
-    console.log(id);
-    const url = 'http://amimusa.xen.prgmr.com:3000/tasks/'+id;
+    const url = this.apiUrl+id;
     console.log(url);
     this.data ={
       "description": description,

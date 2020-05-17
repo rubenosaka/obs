@@ -12,7 +12,7 @@ import {NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 
 export class ObsAllTasksComponent implements OnInit {
-  tasks = {}
+  tasks
   showItem  = [];
 
   @Input()
@@ -25,13 +25,17 @@ export class ObsAllTasksComponent implements OnInit {
   completed : any = [true, false];
 
 
-  constructor( protected taskService: TaskService, protected http: HttpClient, private appComponent: AppComponent, private modalService: NgbModal, public activeModal: NgbActiveModal, private obsEditTasksComponent:ObsEditTasksComponent) {  }
+  constructor( protected taskService: TaskService, protected http: HttpClient, private appComponent: AppComponent, public activeModal: NgbActiveModal, private obsEditTasksComponent:ObsEditTasksComponent) {  }
 
-  ngOnInit() {
+    ngOnInit() {
+      this.getTasksList()
+    }
+
+    getTasksList(){
       this.taskService.getTasks()
       .subscribe(
         (data) => { // Success
-            this.tasks = data;
+            this.tasks = data
           },
         (error) => {
           console.error(error);
@@ -39,7 +43,9 @@ export class ObsAllTasksComponent implements OnInit {
       );
     }
 
-    editTask(id, description, completed, i){
+
+
+    editTask(id:string, description:string, completed:boolean, i:number){
       this.obsEditTasksComponent.editTask(id, description, completed, i);
     }
 
@@ -61,12 +67,16 @@ export class ObsAllTasksComponent implements OnInit {
         `;
         this.appComponent.openModal(modalTitleContent, modalMsgContent);
         this.showItem.push(i);
+        setTimeout(function(){
+          window.location.reload();
+        }, 2000)
       },
       err => {
         const index = this.showItem.indexOf(5);
         if (index > -1) {
           this.showItem.splice(index, 1);
         }
+
         console.log(err);
       });
      }

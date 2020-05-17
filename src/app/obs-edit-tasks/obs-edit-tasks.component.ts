@@ -89,7 +89,9 @@ export class ObsEditTasksComponent {
         </ul>
       `;
       this.appComponent.openModal(modalTitleContent, modalMsgContent);
-
+      setTimeout(function(){
+        window.location.reload();
+      }, 3000)
     },
     err => {
       console.log(err);

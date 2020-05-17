@@ -16,7 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ObsEditTasksComponent,
     ObsCreateTasksComponent,
     ObsAllTasksComponent,
-    ObsModalsComponent
+    ObsModalsComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     TaskService,
     NgbActiveModal,
-    ObsEditTasksComponent
+    ObsEditTasksComponent,
   ],
   bootstrap: [AppComponent]
 })
