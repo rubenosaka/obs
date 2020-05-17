@@ -12,7 +12,13 @@ import { AppComponent } from '../app.component';
 })
 export class ObsCreateTasksComponent implements OnInit {
 
-  constructor(protected taskService: TaskService,  protected http: HttpClient, private modalService: NgbModal, private appComponent: AppComponent) {  }
+  constructor(
+    protected taskService: TaskService,
+    protected http: HttpClient,
+    private modalService: NgbModal,
+    private appComponent: AppComponent,
+    public activeModal: NgbActiveModal,
+  ){  }
   createTask = new FormGroup({
      description: new FormControl(''),
      completed: new FormControl(''),
@@ -21,8 +27,8 @@ export class ObsCreateTasksComponent implements OnInit {
   }
 
   addTask(){
-    console.log(this.createTask.value);
-    if( this.createTask.value.completed === "" || this.createTask.value.completed === " "){
+    this.activeModal.close();
+    if( this.createTask.value.completed === "" || this.createTask.value.completed === " " || this.createTask.value.completed === "false"){
        this.createTask.value.completed = false
     }else{
        this.createTask.value.completed = true

@@ -14,15 +14,6 @@ export class TaskService {
     return this.http.get('http://amimusa.xen.prgmr.com:3000/tasks/'+this.owner);
   }
 
-  removeTask(id:string, i): Observable<any> {
-
-    console.log(id);
-    const url = 'http://amimusa.xen.prgmr.com:3000/tasks/'+id;
-    console.log(url);
-    return this.http.delete(url)
-
-  }
-
   data = {}
 
   addNewTask(description:string, completed: boolean): Observable<any> {
@@ -36,6 +27,29 @@ export class TaskService {
       "completed": completed
     }
     return this.http.post(url, this.data)
+
+  }
+
+  removeTask(id:string, i): Observable<any> {
+
+    console.log(id);
+    const url = 'http://amimusa.xen.prgmr.com:3000/tasks/'+id;
+    console.log(url);
+    return this.http.delete(url)
+
+  }
+
+
+  updateTask(id: string, description:string, completed: boolean): Observable<any> {
+
+    console.log(id);
+    const url = 'http://amimusa.xen.prgmr.com:3000/tasks/'+id;
+    console.log(url);
+    this.data ={
+      "description": description,
+      "completed": completed
+    }
+    return this.http.patch(url, this.data)
 
   }
 }

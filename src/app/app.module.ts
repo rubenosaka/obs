@@ -33,8 +33,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
   ],
   providers: [
+    AppComponent,
     TaskService,
-    NgbActiveModal 
+    NgbActiveModal,
+    ObsEditTasksComponent
   ],
   bootstrap: [AppComponent]
 })

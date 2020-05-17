@@ -10,26 +10,28 @@
     </div>
   </div>
   <div class="row">
+
       <div id="item-{{task._id}}" *ngFor="let task of tasks; let i = index" class="col-sm-12">
         <div class="item-list" *ngIf="!showItem.includes(i)">
           <div ng-show = "IsVisible" class="row">
+
             <div class="col-sm-8"><h5>{{task.description}}</h5></div>
             <div class="col-sm-4 edit-item text-right">
-              <span><i class="far fa-edit"></i></span>
+              <span (click)="editTask(task._id, task.description, task.completed, i);"><i class="far fa-edit"></i></span>
               <span (click)="deleteTask(task._id, i);"><i class="far fa-trash-alt"></i></span>
             </div>
-          </div>
-          <div class="row">
 
-            <div class="col-sm-3"><strong>ID: </strong>{{task._id}}</div>
-            <div class="col-sm-3"><strong>Status: </strong>{{task.completed}}</div>
-            <div class="col-sm-2"><strong>Owner: </strong>{{task.owner}}</div>
-            <div class="col-sm-2"><strong>Created: </strong>{{task.createdAt}}</div>
+          </div>
+          <div class="row mt-2">
+
+            <div class="col-sm-4"><strong>ID: </strong><br/>{{task._id}}</div>
+            <div class="col-sm-3"><strong>Status: </strong><br/>{{task.completed}}</div>
+            <div class="col-sm-2"><strong>Owner: </strong><br/>{{task.owner}}</div>
+            <div class="col-sm-3"><strong>Created: </strong><br/>{{task.createdAt}}</div>
 
           </div>
 
         </div>
       </div>
-
   </div>
 </div>

@@ -1,1 +1,42 @@
-<p>obs-edit-tasks works!</p>
+
+  <form [formGroup]="myForm" (ngSubmit)="updateTask()">
+<div class="modal-header">
+  <h4 class="modal-title">{{modalTitle}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+
+  <div class="row">
+    <div class="col-sm-12">
+      {{modalMsg}}
+    </div>
+    <div class="col-sm-12">
+      <div class="form-group">
+        <label for="descriptionInput">Task Description</label>
+        <input formControlName="description" type="text" class="form-control" id="description" aria-describedby="descriptionInput" required>
+        <small id="descriptionInput" class="form-text text-muted">Requiered field.</small>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="form-check">
+        <input [checked]="completed"  formControlName="completed" class="form-check-input" type="checkbox" value="true" id="completedCheck">
+        <label class="form-check-label" for="completedCheck">
+          Task Status
+        </label>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="modal-footer">
+  <input formControlName="id" type="hidden" value="{{id}}" class="form-control" id="id" aria-describedby="descriptionInput" required>
+  <button class="btn btn-success"
+      [disabled]="!myForm.valid">
+      Submit Form
+    </button>
+</div>
+
+    </form>

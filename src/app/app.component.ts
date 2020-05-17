@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { ObsModalsComponent } from './obs-modals/obs-modals.component';
 import {NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -7,6 +7,7 @@ import {NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
+@Injectable()
 export class AppComponent {
   title = 'obs-app';
 
