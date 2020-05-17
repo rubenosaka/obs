@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl  } from '@angular/forms';
-import { TaskService } from '../task.service';
+import { TaskService } from '../shared/task.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from '../app.component';
 

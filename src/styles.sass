@@ -3,16 +3,26 @@
 @import "../node_modules/bootstrap/scss/bootstrap"
 @import "https://use.fontawesome.com/releases/v5.13.0/css/all.css"
 
+$distance: 15px
+
 body
   background-color:#F6F6F6
 
 .obs-card
   padding:15px
 
-.item-list
-  padding-bottom:15px
-  margin-bottom:30px
+.item-task__content
+  margin-bottom: $distance*2
+  padding-bottom: $distance*2
   border-bottom:1px solid #CCC
+
+.item-task:last-of-type
+
+
+  .item-task__content
+    margin-bottom:0
+    padding-bottom:0
+    border-width:0px
 
 .edit-item
   font-size:26px

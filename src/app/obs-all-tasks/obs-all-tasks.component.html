@@ -1,37 +1,47 @@
-<div class="card obs-card">
+<div [ngClass]="(minify)?'card obs-card minify':'card obs-card'">
+
   <div class="row mb-5">
-    <div class="col-sm-8">
-      <h3>All tasks</h3>
+    <div [ngClass]="(minify)?'col-12':'col-sm-8'">
+      <h3>{{title}}</h3>
     </div>
-    <div class="col-sm-4 text-right">
+    <div class="col-sm-4 text-right" *ngIf="!minify">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createTask">
         Add new Task
       </button>
     </div>
   </div>
-  <div class="row">
 
-      <div id="item-{{task._id}}" *ngFor="let task of tasks; let i = index" class="col-sm-12">
-        <div class="item-list" *ngIf="!showItem.includes(i)">
-          <div ng-show = "IsVisible" class="row">
+  <ng-container *ngFor="let task of tasks; let i = index">
+      <!-- HERE WE CHECK IF WE WANT TO SHOW THE ITEM -->
+      <div id="item-{{task._id}}" class="row item-task"  *ngIf="!showItem.includes(i) && completed.indexOf(task.completed) > -1">
 
-            <div class="col-sm-8"><h5>{{task.description}}</h5></div>
-            <div class="col-sm-4 edit-item text-right">
-              <span (click)="editTask(task._id, task.description, task.completed, i);"><i class="far fa-edit"></i></span>
-              <span (click)="deleteTask(task._id, i);"><i class="far fa-trash-alt"></i></span>
+        <div class="col-sm-12" >
+          <div class="item-task__content">
+            <div class="row">
+
+              <div [ngClass]="(minify)?'col-sm-12':'col-sm-8'"><h5>{{task.description}}</h5></div>
+              <div class="col-sm-4 edit-item text-right" *ngIf="!minify">
+                <!-- PASSING ITINERANCY TO HIDE ELEMENS LATER -->
+                <span (click)="editTask(task._id, task.description, task.completed, i);"><i class="far fa-edit"></i></span>
+                <span (click)="deleteTask(task._id, i);"><i class="far fa-trash-alt"></i></span>
+              </div>
+
             </div>
+            <!-- CONDITION IF COMPONENT IS MINIFIED (Completed tasks examples) -->
+            <div *ngIf="!minify" class="row">
 
+              <!-- HERE WE CHECK IF THE FIELDS HAS VALUES -->
+              <div class="col-md-4 mb-sm-3 col-sm-6" *ngIf="task._id"><strong>ID: </strong><br/>{{task._id}}</div>
+              <div *ngIf="task.completed; else elseCompleted" class="col-md-3 mb-sm-3 col-sm-6"><strong>Status: </strong><br/> Completed</div>
+              <ng-template #elseCompleted><div class="col-md-3 mb-sm-3 col-sm-6"><strong>Status: </strong><br/>Developing</div></ng-template>
+              <div class="col-md-2 mb-sm-3 col-sm-6"><strong>Owner: </strong><br/>{{task.owner}}</div>
+              <div class="col-md-3 mb-sm-3 col-sm-6" *ngIf="task.createdAt"><strong>Created: </strong><br/>{{task.createdAt}}</div>
+
+            </div>
           </div>
-          <div class="row mt-2">
-
-            <div class="col-sm-4"><strong>ID: </strong><br/>{{task._id}}</div>
-            <div class="col-sm-3"><strong>Status: </strong><br/>{{task.completed}}</div>
-            <div class="col-sm-2"><strong>Owner: </strong><br/>{{task.owner}}</div>
-            <div class="col-sm-3"><strong>Created: </strong><br/>{{task.createdAt}}</div>
-
-          </div>
-
         </div>
-      </div>
-  </div>
+
+      </div><!-- END OF  ITEM -->
+
+  </ng-container>
 </div>

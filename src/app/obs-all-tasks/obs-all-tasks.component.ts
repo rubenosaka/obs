@@ -1,25 +1,33 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TaskService } from '../task.service';
+import { TaskService } from '../shared/task.service';
 import { AppComponent } from '../app.component';
 import { ObsEditTasksComponent } from '../obs-edit-tasks/obs-edit-tasks.component';
 import {NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormBuilder, FormControl, Validators  } from '@angular/forms';
+
 @Component({
   selector: 'app-obs-all-tasks',
   templateUrl: './obs-all-tasks.component.html',
   styleUrls: ['./obs-all-tasks.component.sass']
 })
 
-
 export class ObsAllTasksComponent implements OnInit {
   tasks = {}
   showItem  = [];
 
-  constructor( protected taskService: TaskService, protected http: HttpClient, private appComponent: AppComponent, private modalService: NgbModal, public activeModal: NgbActiveModal, private formBuilder: FormBuilder, private obsEditTasksComponent:ObsEditTasksComponent) {  }
+  @Input()
+  title: string = 'Tasks';
+
+  @Input()
+  minify: boolean;
+
+  @Input()
+  completed : any = [true, false];
+
+
+  constructor( protected taskService: TaskService, protected http: HttpClient, private appComponent: AppComponent, private modalService: NgbModal, public activeModal: NgbActiveModal, private obsEditTasksComponent:ObsEditTasksComponent) {  }
 
   ngOnInit() {
-
       this.taskService.getTasks()
       .subscribe(
         (data) => { // Success

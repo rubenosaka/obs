@@ -2,7 +2,7 @@ import { Component,  Input, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder} from '@angular/forms';
 import { AppComponent } from '../app.component';
-import { TaskService } from '../task.service';
+import { TaskService } from '../shared/task.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

@@ -1,20 +1,20 @@
 <div class="container">
   <div class="row mb-5">
       <div clasS="col">
-        <h1>OBS API App</h1>
+        <h1>{{title}}</h1>
     </div>
   </div>
   <div class="row">
     <div clasS="col mb-3">
-      <app-obs-all-tasks></app-obs-all-tasks>
+      <app-obs-all-tasks title="All Tasks"></app-obs-all-tasks>
     </div>
   </div>
   <div class="row">
-    <div clasS="col">
-      <app-obs-completed-tasks></app-obs-completed-tasks>
+    <div clasS="col-md-6 mb-3">
+      <app-obs-all-tasks title="Completed Tasks" minify="true" completed="['true']"></app-obs-all-tasks>
     </div>
-    <div clasS="col">
-      <app-obs-pending-tasks></app-obs-pending-tasks>
+    <div clasS="col-md-6 mb-3">
+      <app-obs-all-tasks title="Pending Tasks" minify="true" completed="['false']"></app-obs-all-tasks>
     </div>
   </div>
 <div>
